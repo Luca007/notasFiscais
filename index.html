@@ -1,0 +1,73 @@
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise de Notas Fiscais</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Análise de Notas Fiscais</h1>
+        
+        <div id="cpfSection" class="cpf-section">
+            <input type="text" id="cpfInput" placeholder="Digite seu CPF" maxlength="14">
+            <button id="validateCpfBtn" class="btn">Validar CPF</button>
+        </div>
+
+        <div id="uploadSection" class="upload-container" style="display:none;">
+            <input type="file" id="imageUpload" accept="image/*" hidden>
+            <button id="uploadButton" class="btn">
+                Selecionar Imagem da Nota Fiscal
+            </button>
+            <div id="imagePreview" class="image-preview">
+                <img id="previewImg" src="" alt="Pré-visualização da imagem">
+            </div>
+        </div>
+                <!-- Adicione dentro do body, perto do botão "Extrair e Salvar" -->
+        <div class="progress-container" style="display: none;">
+            <div id="progressBar" class="progress-bar"></div>
+        </div>
+        <div id="progressText" style="text-align: center; margin-top: 8px;"></div>
+  
+
+        <button id="processButton" class="btn" disabled>Extrair e Salvar Nota Fiscal</button>
+
+        <div class="result-container">
+            <textarea id="extractedText" readonly placeholder="Texto extraído aparecerá aqui..."></textarea>
+            <button id="saveExamBtn" class="btn" style="display:none;">Salvar Nota Fiscal</button>
+        </div>
+
+        <div id="examHistorySection" class="exam-history" style="display:none;">
+            <h2>Histórico de Notas Fiscais</h2>
+            <ul id="examList"></ul>
+        </div>
+    </div>
+
+    <!-- Firebase App (compat) -->
+    <script src="https://www.gstatic.com/firebasejs/9.21.0/firebase-app-compat.js"></script>
+    <!-- Firebase Firestore (compat) -->
+    <script src="https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore-compat.js"></script>
+
+    <script>
+    // COLOQUE AQUI AS SUAS CREDENCIAIS DO FIREBASE
+    // Pegue em https://console.firebase.google.com -> Configurações do projeto -> suas credenciais Web
+    const firebaseConfig = {
+      apiKey: "AIzaSyBBqPs4FNTanbitpmemA6Xov_aU3DSbWHI",
+      authDomain: "notas-fiscais-bcd98.firebaseapp.com",
+      projectId: "notas-fiscais-bcd98",
+      storageBucket: "notas-fiscais-bcd98.firebasestorage.app",
+      messagingSenderId: "314150435995",
+      appId: "1:314150435995:web:1628e37690b1f1a6a7da3e"
+    };
+
+    // Inicializa o Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Inicializa Firestore
+    const db = firebase.firestore();
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@v2.1.0/dist/tesseract.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
