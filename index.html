@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -14,7 +15,13 @@
             <button id="validateCpfBtn" class="btn">Validar CPF</button>
         </div>
 
-        <div id="uploadSection" class="upload-container" style="display:none;">
+        <!-- Seção para URL da imagem -->
+        <div id="urlSection" style="display:none;">
+            <input type="text" id="urlInput" placeholder="Cole a URL da imagem" style="width:100%; margin-bottom: 10px;">
+            <button id="downloadFromUrlBtn" class="btn">Carregar imagem da URL</button>
+        </div>
+
+        <div id="uploadSection" class="upload-container" style="display:none; margin-top: 15px;">
             <input type="file" id="imageUpload" accept="image/*" hidden>
             <button id="uploadButton" class="btn">
                 Selecionar Imagem da Nota Fiscal
@@ -23,13 +30,13 @@
                 <img id="previewImg" src="" alt="Pré-visualização da imagem">
             </div>
         </div>
-                <!-- Adicione dentro do body, perto do botão "Extrair e Salvar" -->
+
+        <!-- Barra de progresso do OCR -->
         <div class="progress-container" style="display: none;">
             <div id="progressBar" class="progress-bar"></div>
         </div>
         <div id="progressText" style="text-align: center; margin-top: 8px;"></div>
   
-
         <button id="processButton" class="btn" disabled>Extrair e Salvar Nota Fiscal</button>
 
         <div class="result-container">
@@ -49,8 +56,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore-compat.js"></script>
 
     <script>
-    // COLOQUE AQUI AS SUAS CREDENCIAIS DO FIREBASE
-    // Pegue em https://console.firebase.google.com -> Configurações do projeto -> suas credenciais Web
+    // CONFIGURAÇÕES DO FIREBASE (exemplo genérico, substitua pelos seus)
     const firebaseConfig = {
       apiKey: "AIzaSyBBqPs4FNTanbitpmemA6Xov_aU3DSbWHI",
       authDomain: "notas-fiscais-bcd98.firebaseapp.com",
@@ -62,12 +68,14 @@
 
     // Inicializa o Firebase
     firebase.initializeApp(firebaseConfig);
-
     // Inicializa Firestore
     const db = firebase.firestore();
     </script>
 
+    <!-- Tesseract para OCR -->
     <script src="https://cdn.jsdelivr.net/npm/tesseract.js@v2.1.0/dist/tesseract.min.js"></script>
+
+    <!-- Seu script principal -->
     <script src="script.js"></script>
 </body>
 </html>
